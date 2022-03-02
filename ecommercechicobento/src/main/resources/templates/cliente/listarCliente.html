@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+    <head>
+        <title>Lista de clientes</title> 
+    </head>  
+    <body>
+        <header>
+            <a href="/cadastrarCliente">Cadastrar cliente</a>
+        </header>
+    
+        <table class="container">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>E-mail</th>
+                    <th>Gênero</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cliente : ${clientes}">
+                    <td><a th:href="${(#mvc.url('CC#detalhesCliente').arg(0, cliente.codigo)).build()}" ><span th:text="${cliente.nome}"></span></a></td>
+                    <td><span th:text="${cliente.cpf}"></span></td>
+                    <td><span th:text="${cliente.email}"></span></td>
+                    <td><span th:text="${cliente.genero}"></span></td>
+                </tr>    
+            </tbody>    
+        </table>
+        <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    </body>
+</html>   

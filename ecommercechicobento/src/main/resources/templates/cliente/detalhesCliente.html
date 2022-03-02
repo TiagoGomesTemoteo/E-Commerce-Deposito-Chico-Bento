@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+    <head>
+        <title>Detalhes Clientes</title> 
+        <a href="/cadastrarCliente">Cadastrar cliente</a>
+        <p> <a href="/listarClientes">Listar clientes</a></p>
+    </head>  
+    <body>
+
+        <div class="container detalhesEvento">
+            <h5>Detalhes do Cliente</h5>
+            <th:block th:include="mensagemValidacao"></th:block>
+            
+            <form method="post" th:action="@{/alterarCliente/{codigo}(codigo = ${cliente.codigo})}" th:object="${cliente}">
+                <p> Nome: <input type="text" value="${cliente.nome}" th:field="*{nome}"/></p>
+                <p> Data de nascimento: <input type="date" value="${cliente.dataNascimento}" th:field="*{dataNascimento}"/></p> 
+                <p> Gênero: <select name="genero">
+                    <option value="">Selecione...</option>
+                    <option value="masculino" th:selected="${cliente.genero == 'masculino'}" >Masculino</option>
+                    <option value="feminino" th:selected="${cliente.genero == 'feminino'}" >Feminino</option>
+                </select> 
+                <p> CPF: <input type="text" value="${cliente.cpf}" th:field="*{cpf}"/></p>
+                <p> Telefone: <input type="text" value="${cliente.telefone}" th:field="*{telefone}"/></p>
+                <p> E-mail: <input type="text" value="${cliente.email}" th:field="*{email}"/></p>
+                
+                <p> <a th:href="${(#mvc.url('CC#gerenciarEnderecos').arg(0, cliente.codigo)).build()}" >Gerenciar Endereços</a></p>
+                <p> <a href="/gerenciarCartoes">Gerenciar Cartões</a></p>
+                <button type="submit"> Salvar</button> 
+            </form>
+        </div>  
+
+        <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    </body>
+</html>   

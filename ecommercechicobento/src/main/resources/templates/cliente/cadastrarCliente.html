@@ -1,0 +1,27 @@
+<html   xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head>
+        <title>Cadastro</title> 
+        <a href="/listarClientes">Listar clientes</a>       
+    </head>
+    <body>
+        <h3>Cadastro de cliente</h3>
+        <th:block th:include="mensagemValidacao"></th:block>
+        <form method="post" th:action="@{/cadastroCliente}">
+            <p> Nome: <input type="text" value="" name="nome"/></p>
+            <p> Data de nascimento: <input type="date" value="" name="dataNascimento"/></p> 
+            <p> Gênero: <select name="genero">
+                <option value="">Selecione...</option>
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+            </select> 
+            <p> CPF: <input type="text" value="" name="cpf"/></p>
+            <p> Telefone: <input type="text" value="" name="telefone"/></p>
+            <p> E-mail: <input type="text" value="" name="email"/></p>
+            <p> Senha: <input type="text" value="" name="senha"/></p>
+            <p> Confirmar Senha: <input type="text" value="" name="confirmarSenha"/></p>
+            <button> Salvar</button> 
+        </form>
+    </body>
+</html>
